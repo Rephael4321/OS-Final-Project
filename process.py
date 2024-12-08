@@ -1,7 +1,6 @@
 import json
 import requests
 import multiprocessing
-import time
 
 
 def execute_process(url: str, queue: multiprocessing.Queue, index: int) -> None:
