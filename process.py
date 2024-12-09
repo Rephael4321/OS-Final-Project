@@ -30,11 +30,11 @@ def main() -> None:
     for process in processes:
         process.join()
 
-    TOTAL_CHARS = 0
+    total_chars = 0
     for process in processes:
-        TOTAL_CHARS += queue.get()
+        total_chars += queue.get()
 
-    print(f"Total number of chars downloaded is {TOTAL_CHARS}")
+    print(f"Total number of chars downloaded is {total_chars}")
 
 
 if __name__ == "__main__":
