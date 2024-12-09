@@ -1,7 +1,9 @@
 import json
 import requests
 import threading
-import time
+
+
+TOTAL_CHARS = 0
 
 
 def execute_thread(url: str, mutex: threading.Lock, index: int) -> None:
@@ -12,10 +14,7 @@ def execute_thread(url: str, mutex: threading.Lock, index: int) -> None:
     print(f"Thread {index} Downloaded {len(data_str)} chars from {url}")
 
     with mutex:
-        temp = TOTAL_CHARS
-        temp += len(data_str)
-        time.sleep(0.0001)
-        TOTAL_CHARS = temp
+        TOTAL_CHARS += len(data_str)
 
 
 def main() -> None:
@@ -40,9 +39,6 @@ def main() -> None:
         thread.join()
 
     print(f"Total number of chars downloaded is {TOTAL_CHARS}")
-
-
-TOTAL_CHARS = 0
 
 
 if __name__ == "__main__":

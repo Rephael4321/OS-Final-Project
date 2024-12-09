@@ -11,7 +11,6 @@ def execute_process(url: str, queue: multiprocessing.Queue, index: int) -> None:
     queue.put(len(data_str))
 
 def main() -> None:
-    global TOTAL_CHARS
     urls = [
         'https://jsonplaceholder.typicode.com/posts',
         'https://jsonplaceholder.typicode.com/comments',
@@ -31,13 +30,11 @@ def main() -> None:
     for process in processes:
         process.join()
 
+    TOTAL_CHARS = 0
     for process in processes:
         TOTAL_CHARS += queue.get()
 
     print(f"Total number of chars downloaded is {TOTAL_CHARS}")
-
-
-TOTAL_CHARS = 0
 
 
 if __name__ == "__main__":
